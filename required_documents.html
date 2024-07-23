@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<htm lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Главная</title>
+    <link rel="stylesheet" href="sample.css">
+    <link rel="stylesheet" href="required_documents.css">
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: rgb(213, 233, 255);
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.wrapper > * {
+    flex: 1 1 100%;
+}
+
+
+/*! начало шапки !*/
+
+
+#header_plus{
+    display: flex;
+    background: rgb(213, 233, 255);
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 12vh;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background: rgba(128, 128, 128, 0.2);
+    backdrop-filter: blur(2ch) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    box-shadow: 0 1vh 1vh rgba(0, 0, 0, 0.1);
+
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.2rem;
+
+}
+
+.header-content p{
+    transition: color 0.5s ease;
+}
+
+.header-content p:hover{
+    color:rgb(41, 175, 253);
+}
+
+.copy-message {
+    position: absolute;
+    font-size: 1rem;
+    margin-top: 5vh;
+    padding: 1rem;
+    border: none;
+    border-radius: 2vh;
+    height: 5vh;
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background: rgb(140, 167, 255);
+    box-shadow: 0 1vh 0 #9cbaff;
+    opacity: 0; /* Начальная непрозрачность */
+    visibility: hidden; /* Элемент скрыт */
+    transition: opacity 1s, visibility 1s; /* Переходы для opacity и visibility */
+    z-index: 1000;
+}
+.copy-message.show {
+    opacity: 1; /* Полная непрозрачность */
+    visibility: visible; /* Элемент виден */
+}
+
+.logo_head {
+    margin-right: 2rem;
+}
+
+.adres_head {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-left: 2rem;
+    margin-right: 1.8rem;
+}
+
+
+.adres_head a{
+    text-decoration: none;
+    color: black;
+}
+
+.adres_head svg {
+    height: 2vh;
+    width: 2.5vh;
+    margin-right: 0.3rem;
+    fill:rgb(41, 175, 253);
+}
+
+
+.time_work_head {
+    display: flex;
+    text-align: left;
+    margin-left: 2rem;
+    margin-right: 1.5rem;
+    transition: color 0.5s ease;
+}
+
+.time_work_head svg {
+    height: 2vh;
+    width: 2vh;
+    margin-right: 0.25rem;
+    fill:rgb(41, 175, 253);
+}
+
+.time_work_head p{
+    cursor: pointer;
+}
+
+.messendger_head {
+    margin-left: 2rem;
+}
+
+.messendger_head a{
+    text-decoration: none;
+}
+
+.messendger_head svg {
+    height: 5vh;
+    width: 5vh;
+    margin-right: 0rem;
+
+}
+
+.phone_number_head {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 2rem;
+    fill:rgb(41, 175, 253);
+}
+
+
+.phone_number_head a{
+    text-decoration: none;
+    color: black;
+}
+
+.phone_number_head svg {
+    height: 3.5vh;
+    width: 3.5vw;
+    margin-top: -0.5rem;
+
+}
+
+.call_app svg {
+    height: 5vh;
+    width: 5vw;
+    margin-top: -0.3rem;
+
+}
+
+
+.call_app {
+    margin-left: 1rem;
+}
+
+
+.container-phone-svg {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.container-phone-svg svg {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.window_phone {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.window_content_phone {
+    position: fixed;
+    left: -55vw; /* Initially off-screen */
+    top: 0;
+    background-color: #fefefe;
+    padding: 2vw 2vw 0 0;
+    border: 1px solid #888;
+    border-radius: 0 2vh 2vh 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 55vw;
+    overflow-y: auto;
+    transition: left 0.5s ease-in-out;
+    padding-left: 1%;
+}
+
+.window_content_phone.show {
+    left: 0;
+}
+
+#window_text h1{
+    text-align: center;
+}
+
+#window_text h4{
+    text-align: center;
+    color: #202020;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#transition_button {
+    width: 48vw;
+    height: 7vh;
+}
+
+.window-menu-content h2 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.window-menu-content p {
+    text-align: left;
+    font-size: 0.8rem;
+}
+
+.logo-phone-window {
+    margin-top: 2rem;
+}
+
+.window-menu-content {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.menu-phone-title {
+    margin-top: 2rem;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.menu-transition-bt {
+    margin-top: 1rem;
+}
+
+.menu-transition-bt button:first-child {
+    border: 2px solid rgb(213, 233, 255, 0.9) !important;
+    border-radius: 0 2vh 0 0 !important;
+    border-bottom: none !important;
+    padding: 2% !important;
+
+}
+
+.menu-transition-bt button{
+    border: 2px solid rgb(213, 233, 255, 0.9) !important;
+    border-radius: 0 !important;
+    padding: 2% !important;
+    border-bottom: none !important;
+}
+
+.menu-transition-bt button:last-child {
+    border: 2px solid rgb(213, 233, 255, 0.9) !important;
+    border-radius: 0 0 2vh 0 !important;
+    padding: 2% !important;
+
+}
+
+.window {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.window-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 5vh;
+    border: 1px solid #888;
+    border-radius: 2vh;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.5s;
+    margin-top: 20vh;
+    align-items: center;
+}
+
+#window_text h1{
+    text-align: center;
+}
+#window_text h4{
+    text-align: center;
+    color: #202020;
+}
+
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.close_app_window {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close_app_window:hover,
+.close_app_window:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#send_meta {
+    font-size: 1.2rem;
+    margin-top: 5vh;
+    border: none;
+    border-radius: 2vh;
+    height: 7vh;
+    text-decoration: none;
+    color: white;
+    background: rgb(140, 167, 255);
+    box-shadow: 0 1vh 0 #9cbaff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#send_meta:hover {
+    font-size: 1.2rem;
+    background: #587ccf;
+    box-shadow: 2vh 1vh 2vh #98b1ec;
+    position: relative;
+}
+
+#send_meta p{
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+.send_meta_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.window-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*! конец шапки !*/
+
+
+
+/*! начало мэина !*/
+.main {
+    padding: 2%;
+    background-color: rgb(235, 245, 255);
+    margin-bottom: 2rem;
+}
+
+
+
+#transitoin-bt ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center; /* Центрирование элементов */
+}
+
+#transitoin-bt button {
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2vh;
+    margin: 0 1rem; /* Установите отступы между элементами списка */
+    border: 1px solid black;
+    cursor: pointer;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50vh;
+    transition: color 0.5s ease, border-color 0.5s ease;
+
+}
+
+
+#transitoin-bt button:hover {
+    color: rgb(41, 175, 253);
+    border-color: rgb(41, 175, 253); /* Изменяем цвет рамки при наведении */
+}
+
+
+
+/*! конец мэина !*/
+
+
+
+
+/*! начало футера !*/
+.footer {
+    background-color: rgb(201, 214, 255);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    padding: 1%;
+}
+
+.right-footer p{
+    transition: color 0.5s ease;
+}
+
+.right-footer p:hover{
+    color:rgb(41, 175, 253);
+}
+
+.adres-footer p{
+    transition: color 0.5s ease;
+}
+
+.adres-footer p:hover{
+    color:rgb(41, 175, 253);
+}
+
+
+.left-footer {
+    margin-right: 5rem;
+    align-items: end;
+}
+
+
+.adres-footer {
+    display:inline-flex;
+    margin-left: 6rem;
+    margin-bottom: 2vh;
+}
+
+
+.adres-footer a{
+    text-decoration: none;
+    color: black;
+    text-align: right;
+
+}
+
+.adres-footer svg {
+    height: 1.7vh;
+    width: 1.7vh;
+    fill:rgb(41, 175, 253);
+    margin-right: 0.25rem;
+}
+
+.info-footer {
+    text-align: right;
+    margin-bottom: 2vh;
+}
+
+.piar-footer {
+    text-align: right;
+}
+
+.piar-footer a{
+    transition: color 0.5s ease;
+    color: #000;
+}
+.piar-footer a:hover{
+    text-decoration:rgb(41, 175, 253);
+    color:rgb(41, 175, 253);
+}
+
+
+
+.logo-footer {
+    margin-right: 5rem;
+    margin-left: 5rem;
+}
+
+.right-footer {
+    display: block;
+    margin-left: 5rem;
+}
+
+.contact-footer{
+    display: block;
+    margin-bottom: 2vh;
+    margin-top: 1.5vh;
+}
+
+
+.phone-footer {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.phone-footer a{
+    text-decoration: none;
+    color: black;
+}
+
+.phone-footer svg {
+    height: 2vh;
+    width: 2vw;
+    fill:rgb(41, 175, 253);
+}
+
+.pochta-footer {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 0.5vh;
+}
+
+.pochta-footer a{
+    text-decoration: none;
+    color: black;
+    margin-left: 0.25vw;
+}
+
+.pochta-footer svg {
+    height: 2vh;
+    width: 2vw;
+    fill:rgb(41, 175, 253);
+}
+
+.messenger-footer {
+    margin-right: 10rem;
+    margin-bottom: 2vh;
+}
+
+.messenger-footer svg {
+    height: 5vh;
+    width: 5vh;
+    margin-right: 0rem;
+
+}
+
+.messenger-footer a{
+    text-decoration: none;
+}
+
+.com-politicy-footer {
+    text-align: left;
+}
+
+.com-politicy-footer a{
+    color: #000;
+}
+
+.com-politicy-footer a:hover{
+    text-decoration:rgb(41, 175, 253);
+}
+
+
+/*! конец футера !*/
+
+
+
+/*! начала медиа !*/
+@media screen and (max-width: 840px) {
+    #transitoin-bt {
+        display: none;
+    }
+
+    .header {
+        display: flex;
+        width: 100%;
+        background: rgba(128, 128, 128, 0.2);
+        backdrop-filter: blur(2ch) saturate(180%);
+        -webkit-backdrop-filter: blur(10px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: none;
+    }
+
+    .header-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo_head img {
+        align-self: start;
+        margin-left: 3rem;
+    }
+
+    .adres_head,
+    .time_work_head,
+    .messendger_head,
+    .phone_number_head,
+    .call_app {
+        display: none !important;
+    }
+
+    .container-phone-svg {
+        display: block !important;
+    }
+    .container-phone-svg svg {
+        display: flex !important;
+        width: 4.5vw !important;
+        height: 4.5vh !important;
+    }
+
+
+    #menu_phone {
+        margin-right: 3rem;
+        margin-top: 0rem;
+    }
+
+    #cross_phone {
+        margin-right: 3rem;
+        margin-top: -2rem;
+    }
+
+    .footer-content * {
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-content {
+        padding: 2%;
+        font-size: 0.75rem;
+        flex-direction: column;
+    }
+
+    .left-footer {
+        margin-right: 0;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .logo-footer {
+        margin-left: 0;
+        margin-right: 0;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .right-footer {
+        margin-left: 0;
+    }
+
+    .adres-footer {
+        margin-left: -1rem;
+    }
+
+    .adres-footer svg {
+        margin-top: -1rem;
+    }
+
+    .messenger-footer {
+        margin-right: 0;
+    }
+}
+
+
+
+
+@media screen and (max-width:1100px) {
+    #transitoin-bt button {
+        font-size: 1rem;
+        margin: 0 0.5rem;
+    }
+
+
+    .container-phone-svg {
+        display: none;
+    }
+
+    .messenger-footer svg {
+        height: 4vh;
+        width: 4vh;
+        margin-right: 0rem;
+
+    }
+
+    .footer-content {
+        font-size: 0.8rem;
+    }
+
+    .adres_head {
+        margin-left:1.5rem;
+        margin-right: 1.3rem;
+    }
+
+    .time_work_head {
+        margin-left:1.5rem;
+        margin-right: 1rem;
+    }
+
+    .messendger_head {
+        margin-left: 1.5rem;
+    }
+
+    .phone_number_head {
+        margin-left:1.5rem;
+    }
+
+    .call_app svg {
+        height: 4vh;
+        width: 4vw;
+    }
+    .logo_head {
+        height: 4vh;
+        width: 4vw;
+        margin-top: -2.5rem;
+    }
+
+    .call_app {
+        height: 4vh;
+        width: 4vw;
+    }
+
+    .header-content {
+        font-size: 1rem;
+    }
+
+    .header_plus{
+        order: 2;
+        height: 12vh;
+    }
+
+    .main{
+        order: 3;
+    }
+
+
+    .footer{
+        order: 4;
+    }
+
+    .window-content{
+        max-width: 60vw;
+        max-height: 45vh;
+    }
+}
+
+@media screen and (min-width:1100px) {
+    .window-content{
+        max-width: 40vw;
+        max-height: 45vh;
+    }
+
+
+    .container-phone-svg {
+        display: none;
+    }
+
+    .phone_number_head svg {
+        margin-right: -0.65rem;
+    }
+
+    .header_plus{
+        order: 2;
+        height: 12vh;
+    }
+    .main{
+        order: 2;
+    }
+
+
+    .footer{
+        order: 3;
+    }
+}
+
+
+
+/*! конеец медиа !*/
+/*! начало мэина !*/
+
+.required_documents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#required_doc {
+    background-color: rgb(201, 214, 255);;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    max-width: 90%;
+    padding: 2%;
+    border-radius: 2vh;
+    text-align: center;
+    justify-content: center;
+
+}
+
+#required_doc p {
+    text-align: left;
+    text-align: start;
+    font-size: 1.5rem;
+}
+
+#required_doc_item {
+    background-color: #ffffff;
+    border: 0.25vh solid none;
+    overflow: hidden;
+    border-radius: 2vh;
+    margin-bottom: 1rem;
+}
+
+#titile-svg {
+    margin-right: 0.5rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    fill:rgb(41, 175, 253);
+}
+#required_doc_item {
+    align-items: center;
+}
+#required_doc_title {
+    display: flex;
+    transition: color 0.5s ease, border-color 0.5s ease;
+}
+#left-title {
+    display: flex;
+    margin: 0;
+}
+
+
+#required_doc_content {
+    background-color: #ffffff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+#required_doc_content li{
+    margin-left: 3rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+#required_doc_content p {
+    font-size: 1.3rem;
+}
+
+#required_doc_title {
+    background-color: #ffffff;
+    background-color: #f1f1f1;
+    padding: 2%;
+    margin-bottom: 1%;
+    cursor: pointer;
+    display: flex;
+}
+
+.title-h1{
+    margin-top: 4rem;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+
+
+/*! конец мэина !*/
+
+
+
+
+/*! начала медиа !*/
+
+@media screen and (max-width: 840px) {
+    .title-h1 {
+        font-size: 0.9rem;
+    }
+
+    #required_doc_title p {
+        font-size: 1rem;
+    }
+
+    #required_doc_content li{
+        margin-left: 2rem;
+        margin-right: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    #required_doc_content p{
+        font-size: 0.9rem;
+    }
+
+    #titile-svg {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}
+
+@media screen and (max-width:1100px) {
+
+    .title-h1 {
+        font-size: 1rem;
+    }
+
+    #required_doc_title p {
+        font-size: 1.2rem;
+    }
+
+    #required_doc_content li{
+        font-size: 1rem;
+    }
+
+    #required_doc_content p{
+        font-size: 1rem;
+    }
+
+    #titile-svg {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+}
+
+@media screen and (min-width:1100px){
+
+
+}
+
+/*! конец медиа !*/
+
+        /* General styles for the input fields */
+.custom-input {
+    margin-top: 0.8rem;
+    weight: 100%;
+    font-size: 1.2rem;
+    border-radius: 20vh;
+    padding: 10px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+    #phone_input {
+        font-size: 1.2rem;
+    }
+
+    .custom-input:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+        outline: none;
+    }
+
+    .custom-input:valid {
+        border-color: #28a745;
+        box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);
+    }
+
+    /* Invalid state styles (optional) */
+    .custom-input:invalid {
+        border-color: #dc3545;
+        box-shadow: 0 0 8px rgba(220, 53, 69, 0.6);
+    }
+        #send_info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header_plus"></div>
+
+        <header class="header">
+            <div class="header-content">
+                <div class="logo_head">
+
+                    <a href="">
+                        <img src="https://png.pngtree.com/png-vector/20190326/ourlarge/pngtree-notary-law-logo-png-image_868690.jpg" width="80vw" height="80vh">
+                    </a>
+                </div>
+
+                <div class="adres_head">
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512">
+                        <g id="_01_align_center">
+                            <path d="M255.104,512.171l-14.871-12.747C219.732,482.258,40.725,327.661,40.725,214.577c0-118.398,95.981-214.379,214.379-214.379   s214.379,95.981,214.379,214.379c0,113.085-179.007,267.682-199.423,284.932L255.104,512.171z M255.104,46.553   c-92.753,0.105-167.918,75.27-168.023,168.023c0,71.042,110.132,184.53,168.023,236.473   c57.892-51.964,168.023-165.517,168.023-236.473C423.022,121.823,347.858,46.659,255.104,46.553z"/>
+                            <path d="M255.104,299.555c-46.932,0-84.978-38.046-84.978-84.978s38.046-84.978,84.978-84.978s84.978,38.046,84.978,84.978   S302.037,299.555,255.104,299.555z M255.104,172.087c-23.466,0-42.489,19.023-42.489,42.489s19.023,42.489,42.489,42.489   s42.489-19.023,42.489-42.489S278.571,172.087,255.104,172.087z"/>
+                        </g>
+                    </svg>
+                    <a href="">
+                        <p>
+                            Г. Москва улица Пушкина<br>
+                            дома им. Колатушкина
+                        </p>
+                    </a>
+                </div>
+
+                <div class="time_work_head">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/><path d="M12,6a1,1,0,0,0-1,1v4.325L7.629,13.437a1,1,0,0,0,1.062,1.7l3.84-2.4A1,1,0,0,0,13,11.879V7A1,1,0,0,0,12,6Z"/></svg>
+                    <p class="copy-paragraph">
+                        Пн-Пт:<br>
+                        9:00-16:00
+                    </p>
+
+
+                </div>
+
+                <div class="messendger_head">
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" ><path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"/><path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"/><path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"/><path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"/></svg>
+                    </a>
+
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" clip-rule="evenodd"><path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"/><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"/><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+
+                <div class="phone_number_head">
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920.000000 920.000000" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)"
+                        fill="rgb(41, 175, 253)" stroke="none">
+                        <path d="M2453 7910 c-396 -31 -764 -156 -949 -324 -104 -94 -154 -217 -206
+                        -506 -19 -107 -23 -159 -22 -360 0 -234 8 -340 44 -605 167 -1216 719 -2323
+                        1595 -3201 110 -110 256 -247 325 -304 923 -765 2009 -1208 3225 -1315 227
+                        -20 354 -19 526 4 235 32 368 66 487 124 190 92 355 420 427 847 22 127 31
+                        430 17 551 -41 347 -172 534 -479 688 -110 55 -164 75 -325 121 -479 136
+                        -1070 144 -1408 19 -264 -98 -339 -219 -357 -571 -3 -71 -7 -128 -9 -128 -11
+                        0 -256 111 -369 167 -288 143 -580 333 -825 536 -119 99 -366 342 -473 466
+                        -152 176 -327 423 -452 635 -106 180 -297 585 -277 586 210 10 324 25 427 58
+                        68 22 88 34 136 82 88 87 155 247 196 470 25 137 25 596 0 760 -48 310 -109
+                        522 -204 715 -117 235 -243 356 -447 426 -148 51 -391 75 -603 59z m317 -291
+                        c187 -23 285 -64 364 -151 292 -322 414 -1330 209 -1734 -42 -83 -97 -96 -424
+                        -99 -153 -2 -243 -6 -257 -14 -12 -6 -33 -26 -47 -45 -38 -50 -33 -96 25 -253
+                        476 -1277 1449 -2232 2747 -2694 126 -45 186 -35 234 37 17 26 19 50 19 237 0
+                        198 9 314 31 383 28 90 319 163 645 164 567 1 1127 -177 1246 -396 140 -258
+                        97 -855 -88 -1215 -78 -151 -115 -176 -329 -220 -201 -41 -346 -52 -540 -40
+                        -761 49 -1417 219 -2080 542 -919 446 -1685 1147 -2212 2024 -90 151 -103 175
+                        -203 373 -198 396 -361 869 -445 1287 -66 332 -83 471 -109 905 -6 97 22 329
+                        58 484 36 153 69 192 231 271 251 124 645 189 925 154z"/>
+                        </g>
+                        </svg>
+
+                    <a href="">
+                        <p class="copy-paragraph">
+                            +7 966 777 77 77
+                        </p>
+                    </a>
+                </div>
+
+                <div class="call_app" id="call_app">
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="m23.5,11c-.276,0-.5-.224-.5-.5,0-5.238-4.262-9.5-9.5-9.5-.276,0-.5-.224-.5-.5s.224-.5.5-.5c5.79,0,10.5,4.71,10.5,10.5,0,.276-.224.5-.5.5Zm-3.5-.5c0-3.584-2.916-6.5-6.5-6.5-.276,0-.5.224-.5.5s.224.5.5.5c3.033,0,5.5,2.467,5.5,5.5,0,.276.224.5.5.5s.5-.224.5-.5Zm2.234,11.771l.978-1.125c.508-.508.788-1.184.788-1.902s-.28-1.395-.837-1.945l-2.446-1.873c-1.048-1.048-2.753-1.049-3.803-.003l-1.532,1.494c-3.68-1.499-6.678-4.5-8.294-8.303l1.488-1.525c1.049-1.049,1.049-2.756.043-3.756l-1.959-2.543c-1.017-1.017-2.813-.993-3.78-.023l-1.174,1.024C.605,2.886,0,4.373,0,5.976c0,7.749,10.275,18.024,18.024,18.024,1.603,0,3.089-.605,4.21-1.729ZM5.909,1.446l1.959,2.543c.659.659.659,1.732-.004,2.396l-1.722,1.766c-.138.142-.18.352-.106.536,1.729,4.305,5.113,7.688,9.286,9.28.182.07.388.027.527-.108l1.766-1.722s.003-.003.004-.005c.639-.64,1.704-.681,2.44.043l2.446,1.873c.659.659.659,1.731-.023,2.416l-.979,1.125c-.908.91-2.144,1.411-3.479,1.411C10.864,23,1,13.136,1,5.976c0-1.335.501-2.571,1.387-3.456l1.175-1.025c.336-.336.779-.5,1.215-.5.419,0,.831.152,1.133.452Z"/></svg>
+                    </a>
+
+                </div>
+
+                <div class="container-phone-svg" onclick="toggleMenu()">
+                    <svg id="menu_phone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="visible">
+                        <rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/>
+                    </svg>
+                    <svg id="cross_phone" xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512" class="hidden">
+                        <path d="M23.707.293h0a1,1,0,0,0-1.414,0L12,10.586,1.707.293a1,1,0,0,0-1.414,0h0a1,1,0,0,0,0,1.414L10.586,12,.293,22.293a1,1,0,0,0,0,1.414h0a1,1,0,0,0,1.414,0L12,13.414,22.293,23.707a1,1,0,0,0,1.414,0h0a1,1,0,0,0,0-1.414L13.414,12,23.707,1.707A1,1,0,0,0,23.707.293Z"/>
+                     </svg>
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+        <div class="main">
+
+            <div id="transitoin-bt">
+                <ul>
+                    <li>
+
+                        <button onclick="location.href='tariffy'" ><p>тарифы</p></button>
+                    </li>
+                    <li>
+
+                        <button onclick="location.href='required_documents'" ><p>необходимые документы</p></button>
+                    </li>
+                    <li>
+
+                        <button onclick="location.href='about'" ><p>о нас</p></button>
+                    </li>
+                    <li>
+
+                        <button onclick="location.href='contacts'" ><p>контакты</p></button>
+                    </li>
+                    <li>
+
+                        <button onclick="location.href='index'" ><p>на главную</p></button>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="title-h1">
+                <h1>
+                    <p>
+                        Необходимые документы
+                    </p>
+                </h1>
+            </div>
+
+            <div class="required_documents">
+                <div id="required_doc">
+
+                    <div id="required_doc_item">
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             1.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Брачный договор
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div id="required_doc_item">
+
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             2.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Для наследства
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             3.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Для удостоверения верности копии с подлинника документа
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             4.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Доверенность от физического лица
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             5.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Доверенность от юридического лица
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             6.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Договор дарения
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+
+                    </div>
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             7.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Договор займа
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             8.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Договор купли-продажи недвижимого имущества физические лица
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                             9.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Договор купли-продажи недвижимого имущества юридические лица
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            10.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Займ физические лица
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            11.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Залоги (ипотека)
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            12.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Обеспечение доказательств
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            13.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Опцион
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <div id="required_doc_item">
+
+
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            14.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Отчуждение долей в ООО
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+
+                    <div id="required_doc_item">
+
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            15.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Регистрация залога движимого имущества
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <div id="required_doc_item">
+
+                        <div id="required_doc_title">
+                            <p id="left-title">
+                            16.
+                             <svg xmlns="http://www.w3.org/2000/svg" id="titile-svg" data-name="Layer 1" viewBox="0 0 24 24">
+                                <path d="m18,11.5c0,.276-.224.5-.5.5H6.5c-.276,0-.5-.224-.5-.5s.224-.5.5-.5h11c.276,0,.5.224.5.5Zm-.5,3.5H6.5c-.276,0-.5.224-.5.5s.224.5.5.5h11c.276,0,.5-.224.5-.5s-.224-.5-.5-.5Zm-.415,3.221c-.035.052-.892,1.279-2.585,1.279-.998,0-1.58-.32-2.255-.69-.696-.383-1.437-.809-2.748-.81-2.121.011-3.348,1.633-3.398,1.702-.164.221-.118.533.103.698.22.165.533.121.699-.101.01-.013.991-1.291,2.603-1.299.986-.031,1.586.315,2.261.687.695.381,1.481.813,2.736.813,2.242,0,3.369-1.652,3.416-1.723.152-.229.091-.537-.138-.691-.226-.153-.536-.095-.693.134Zm4.915-8.235v9.515c0,2.481-2.019,4.5-4.5,4.5H6.5c-2.481,0-4.5-2.019-4.5-4.5V4.5C2,2.019,4.019,0,6.5,0h5.515c1.735,0,3.368.676,4.597,1.904l3.484,3.485c1.228,1.227,1.904,2.859,1.904,4.596Zm-6.096-7.375c-.551-.55-1.2-.959-1.904-1.231v5.12c0,.827.673,1.5,1.5,1.5h5.121c-.273-.704-.682-1.354-1.232-1.904l-3.484-3.485Zm5.096,7.375c0-.335-.038-.663-.096-.985h-5.404c-1.379,0-2.5-1.122-2.5-2.5V1.096c-.323-.058-.651-.096-.985-.096h-5.515c-1.93,0-3.5,1.57-3.5,3.5v15c0,1.93,1.57,3.5,3.5,3.5h11c1.93,0,3.5-1.57,3.5-3.5v-9.515Z"/>
+                            </svg>
+                            </p>
+
+                            <p>
+                                Согласие на выезд ребенка за границу
+                            </p>
+                        </div>
+                        <div id="required_doc_content">
+                            <ol start="1">
+                                <li>
+                                    <p>
+                                        Паспорта сторон
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <p>
+                                        Если стороны уже в зарегистрированном браке – оригинал свидетельства о браке
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <div id="copy-message" class="copy-message">Текст скопирован!</div>
+
+        <footer class="footer">
+            <div class="footer-content">
+
+                <div class="left-footer">
+
+                    <div class="adres-footer">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="512" height="512">
+                            <g id="_01_align_center">
+                                <path d="M255.104,512.171l-14.871-12.747C219.732,482.258,40.725,327.661,40.725,214.577c0-118.398,95.981-214.379,214.379-214.379   s214.379,95.981,214.379,214.379c0,113.085-179.007,267.682-199.423,284.932L255.104,512.171z M255.104,46.553   c-92.753,0.105-167.918,75.27-168.023,168.023c0,71.042,110.132,184.53,168.023,236.473   c57.892-51.964,168.023-165.517,168.023-236.473C423.022,121.823,347.858,46.659,255.104,46.553z"/>
+                                <path d="M255.104,299.555c-46.932,0-84.978-38.046-84.978-84.978s38.046-84.978,84.978-84.978s84.978,38.046,84.978,84.978   S302.037,299.555,255.104,299.555z M255.104,172.087c-23.466,0-42.489,19.023-42.489,42.489s19.023,42.489,42.489,42.489   s42.489-19.023,42.489-42.489S278.571,172.087,255.104,172.087z"/>
+                            </g>
+                        </svg>
+
+                        <a href="">
+                            <p>
+                                Г. Москва улица Пушкина<br>
+                                дома им. Колатушкина
+                            </p>
+                        </a>
+                    </div>
+
+                    <div class="info-footer">
+                        <p>
+                            Copyright © 2024 - SALAT.mir<br>
+                            Нотариальная контора нотариуса города<br>
+                            Москвы ...
+                        </p>
+                    </div>
+
+                    <div class="piar-footer">
+                        <a href="">
+                            created by @SALAT1KsS
+                        </a>
+                    </div>
+                </div>
+
+                <div class="center-footer">
+                    <div class="logo-footer">
+                        <a href="">
+                            <img src="https://png.pngtree.com/png-vector/20190326/ourlarge/pngtree-notary-law-logo-png-image_868690.jpg" width="80vw" height="80vh">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="right-footer">
+
+                    <div class="contact-footer">
+
+                        <div class="phone-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="512" height="512"><path d="M22.17,1.82l-1.05-.91c-1.21-1.21-3.17-1.21-4.38,0-.03,.03-1.88,2.44-1.88,2.44-1.14,1.2-1.14,3.09,0,4.28l1.16,1.46c-1.46,3.31-3.73,5.59-6.93,6.95l-1.46-1.17c-1.19-1.15-3.09-1.15-4.28,0,0,0-2.41,1.85-2.44,1.88-1.21,1.21-1.21,3.17-.05,4.33l1,1.15c1.15,1.15,2.7,1.78,4.38,1.78,7.64,0,17.76-10.13,17.76-17.76,0-1.67-.63-3.23-1.83-4.42ZM6.24,22c-1.14,0-2.19-.42-2.91-1.15l-1-1.15c-.41-.41-.43-1.08-.04-1.51,0,0,2.39-1.84,2.42-1.87,.41-.41,1.13-.41,1.55,0,.03,.03,2.04,1.64,2.04,1.64,.28,.22,.65,.28,.98,.15,4.14-1.58,7.11-4.54,8.82-8.81,.13-.33,.08-.71-.15-1,0,0-1.61-2.02-1.63-2.04-.43-.43-.43-1.12,0-1.55,.03-.03,1.87-2.42,1.87-2.42,.43-.39,1.1-.38,1.56,.08l1.05,.91c.77,.77,1.2,1.82,1.2,2.96,0,6.96-9.77,15.76-15.76,15.76Z"/></svg>
+
+                            <a href="">
+                                <p>
+                                    +7 966 777 77 77
+                                </p>
+                            </a>
+                        </div>
+
+                        <div class="pochta-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="512" height="512"><path d="M19,1H5A5.006,5.006,0,0,0,0,6V18a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V6A5.006,5.006,0,0,0,19,1ZM5,3H19a3,3,0,0,1,2.78,1.887l-7.658,7.659a3.007,3.007,0,0,1-4.244,0L2.22,4.887A3,3,0,0,1,5,3ZM19,21H5a3,3,0,0,1-3-3V7.5L8.464,13.96a5.007,5.007,0,0,0,7.072,0L22,7.5V18A3,3,0,0,1,19,21Z"/></svg>
+
+                            <a href="">
+                                <p class="copy-paragraph">
+                                    pochta2024@mail.ru
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="messenger-footer">
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" ><path fill="#29b6f6" d="M24 4A20 20 0 1 0 24 44A20 20 0 1 0 24 4Z"/><path fill="#fff" d="M33.95,15l-3.746,19.126c0,0-0.161,0.874-1.245,0.874c-0.576,0-0.873-0.274-0.873-0.274l-8.114-6.733 l-3.97-2.001l-5.095-1.355c0,0-0.907-0.262-0.907-1.012c0-0.625,0.933-0.923,0.933-0.923l21.316-8.468 c-0.001-0.001,0.651-0.235,1.126-0.234C33.667,14,34,14.125,34,14.5C34,14.75,33.95,15,33.95,15z"/><path fill="#b0bec5" d="M23,30.505l-3.426,3.374c0,0-0.149,0.115-0.348,0.12c-0.069,0.002-0.143-0.009-0.219-0.043 l0.964-5.965L23,30.505z"/><path fill="#cfd8dc" d="M29.897,18.196c-0.169-0.22-0.481-0.26-0.701-0.093L16,26c0,0,2.106,5.892,2.427,6.912 c0.322,1.021,0.58,1.045,0.58,1.045l0.964-5.965l9.832-9.096C30.023,18.729,30.064,18.416,29.897,18.196z"/></svg>
+
+                        </a>
+
+                        <a href="">
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" clip-rule="evenodd"><path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"/><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"/><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"/><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"/><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="com-politicy-footer">
+                        <a href="">
+                            <p>
+                                Политика компании в отношении <br>
+                                обработки персональных данных
+                            </p>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+    <div class="phone-menu">
+
+        <div id="menu_phone_window" class="window_phone">
+            <div class="window_content_phone">
+                <span class="close">&times;</span>
+
+                <div class="logo-window"></div>
+
+                <div class="menu-phone-title">
+                    <h2>Меню</h2>
+                </div>
+
+                <div class="window-menu-content">
+
+
+                    <div class="menu-transition-bt">
+
+                        <button  onclick="location.href='tariffy'" id="transition_button"><p>Тарифы</p></button>
+
+                        <button onclick="location.href='required_documents'" id="transition_button"><p>Необходимые документы</p></button>
+
+                        <button onclick="location.href='about'" id="transition_button"><p>О нас</p></button>
+
+                        <button onclick="location.href='contacts'" id="transition_button"><p>Контакты</p></button>
+
+                        <button onclick="location.href='index'" id="transition_button"><p>На главную</p></button>
+
+                    </div>
+                </div>
+
+
+                <div class="logo-phone-window">
+                    <img src="https://png.pngtree.com/png-vector/20190326/ourlarge/pngtree-notary-law-logo-png-image_868690.jpg" width="100vw" height="100vh">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="call_app_window" class="window">
+        <div class="window-content">
+            <span class="close_app_window">&times;</span>
+            <div class="window-container">
+                <div id="window_text">
+                    <h1>Закажите обратный звонок</h1>
+                    <h4>Мы перезвоним и ответим на все ваши вопросы</h4>
+
+                    <div id="send_info">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <div class="send_meta_container">
+                                <button type="submit" id="send_meta"><p>Заказать звонок</p></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var openButton = document.getElementById('call_app');
+        var modal = document.getElementById('call_app_window');
+        var closeButton = document.querySelector('.close_app_window');
+
+        if (openButton && modal && closeButton) {
+            openButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                modal.style.display = 'block';
+            });
+
+
+            closeButton.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    });
+
+    </script>
+
+    <script>
+        function toggleMenu() {
+            const menu_phone = document.getElementById('menu_phone');
+            const cross_phone = document.getElementById('cross_phone');
+
+            if (menu_phone.classList.contains('visible')) {
+                menu_phone.classList.remove('visible');
+                menu_phone.classList.add('hidden');
+                cross_phone.classList.remove('hidden');
+                cross_phone.classList.add('visible');
+                openModal();
+            } else {
+                closeModal();
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById("menu_phone_window");
+            const windowContent = modal.querySelector(".window_content_phone");
+            modal.style.display = "block";
+            setTimeout(() => {
+                windowContent.classList.add("show");
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("menu_phone_window");
+            const windowContent = modal.querySelector(".window_content_phone");
+            windowContent.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 500);
+            const menu_phone = document.getElementById('menu_phone');
+            const cross_phone = document.getElementById('cross_phone');
+            menu_phone.classList.remove('hidden');
+            menu_phone.classList.add('visible');
+            cross_phone.classList.remove('visible');
+            cross_phone.classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const modal = document.getElementById("menu_phone_window");
+            const btn = document.getElementById("menu_phone");
+            const span = document.getElementsByClassName("close")[0];
+
+            span.onclick = function() {
+                closeModal();
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+        });
+    </script>
+    <script>
+        document.querySelectorAll('.copy-paragraph').forEach(paragraph => {
+            paragraph.addEventListener('click', function() {
+
+                const text = this.textContent.trim().replace(/\s+/g, ' ');
+
+                navigator.clipboard.writeText(text).then(() => {
+
+                    const message = document.getElementById('copy-message');
+
+                    const rect = this.getBoundingClientRect();
+                    message.style.left = `${rect.left + window.scrollX}px`;
+                    message.style.top = `${rect.bottom + window.scrollY + 5}px`;
+
+
+                    message.classList.add('show');
+
+
+                    setTimeout(() => {
+                        message.classList.remove('show');
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordionItems = document.querySelectorAll('#required_doc_item');
+
+        accordionItems.forEach(item => {
+            const title = item.querySelector('#required_doc_title');
+            const content = item.querySelector('#required_doc_content');
+
+            title.addEventListener('click', function() {
+                const isOpen = item.classList.toggle('required_doc_open');
+
+                if (isOpen) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+
+            // При загрузке страницы закрываем все плашки
+            content.style.maxHeight = null;
+        });
+    });
+
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var eventCalllback = function(e) {
+        var el = e.target,
+          clearVal = el.dataset.phoneClear,
+          pattern = el.dataset.phonePattern,
+          matrix_def = "+7 (___) ___-__-__",
+          matrix = pattern ? pattern : matrix_def,
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = e.target.value.replace(/\D/g, "");
+        if (clearVal !== 'false' && e.type === 'blur') {
+          if (val.length < matrix.match(/([\_\d])/g).length) {
+            e.target.value = '';
+            return;
+          }
+        }
+        if (def.length >= val.length) val = def;
+        e.target.value = matrix.replace(/./g, function(a) {
+          return /[_\d]/.test(a) && i < val.length ? val.charAt(i++) : i >= val.length ? "" : a
+        });
+      }
+      var phone_inputs = document.querySelectorAll('[data-phone-pattern]');
+      for (let elem of phone_inputs) {
+        for (let ev of ['input', 'blur', 'focus']) {
+          elem.addEventListener(ev, eventCalllback);
+        }
+      }
+    });
+</script>
+
+</body>
+
+</html>
